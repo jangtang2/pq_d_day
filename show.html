@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>WHO PQ D-Day</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.css");
+
+      * {
+        font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+          Roboto, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #fff;
+        color: #000;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .title {
+        font-size: 8vh;
+        margin-bottom: 1vh;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        font-size: 4vh;
+        margin-bottom: 8vh;
+        color: #444;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+
+      .counter {
+        font-size: 28vh;
+        font-weight: 950;
+        margin: 2vh 0;
+        color: #952821;
+        letter-spacing: -0.03em;
+        -webkit-text-stroke: 1px #952821;
+        animation: strongBlink 1.8s ease-in-out infinite;
+      }
+
+      @keyframes strongBlink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.15;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">WHO PQ 심사</div>
+      <div class="subtitle">2025. 01. 08 (수) ~ 01. 10 (금)</div>
+      <div class="counter" id="dday"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
+        }
+      });
+
+      document.addEventListener("click", function () {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        }
+      });
+
+      function updateCounter() {
+        const now = new Date();
+        const target = new Date("2025-01-08");
+        const diff = target - now;
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("dday").innerHTML = `D-${days}`;
+      }
+
+      updateCounter();
+      setInterval(updateCounter, 1000 * 60 * 60 * 24);
+      setInterval(updateCounter, 1000 * 60);
+    </script>
+  </body>
+</html>
