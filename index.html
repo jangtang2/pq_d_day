@@ -85,7 +85,7 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      function requestFullscreen() {
         if (document.documentElement.requestFullscreen) {
           document.documentElement.requestFullscreen();
         } else if (document.documentElement.mozRequestFullScreen) {
@@ -95,24 +95,31 @@
         } else if (document.documentElement.msRequestFullscreen) {
           document.documentElement.msRequestFullscreen();
         }
-      });
+      }
 
-      document.addEventListener("click", function () {
+      document.addEventListener("DOMContentLoaded", requestFullscreen);
+      document.addEventListener("click", () => {
         if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen();
+          requestFullscreen();
         }
       });
 
       function updateCounter() {
         const now = new Date();
-        const target = new Date("2025-01-08");
-        const diff = target - now;
-        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("dday").innerHTML = `D-${days}`;
+        const target = new Date("2025-01-08T00:00:00+09:00"); // KST 기준
+
+        // 날짜 차이 계산 (한국 시간 기준)
+        const diffTime = target - now;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        const ddayElement = document.getElementById("dday");
+        ddayElement.innerHTML = `D-${diffDays}`;
       }
 
+      // 초기 실행
       updateCounter();
-      setInterval(updateCounter, 1000 * 60 * 60 * 24);
+
+      // 1분마다 업데이트
       setInterval(updateCounter, 1000 * 60);
     </script>
   </body>
