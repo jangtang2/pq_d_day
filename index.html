@@ -2,86 +2,44 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>WHO PQ D-Day</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.css"
-      rel="stylesheet"
-    />
+    <title>WHO PQ Image</title>
     <style>
-      @import url("https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.css");
-
       * {
-        font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-          Roboto, sans-serif;
-      }
-
-      body {
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: #fff;
-        color: #000;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
+        box-sizing: border-box;
       }
 
-      .container {
-        text-align: center;
-        padding: 20px;
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #000;
+      }
+
+      .image-container {
         width: 100%;
         height: 100%;
         display: flex;
-        flex-direction: column;
         justify-content: center;
+        align-items: center;
       }
 
-      .title {
-        font-size: 8vh;
-        margin-bottom: 1vh;
-        font-weight: 900;
-        letter-spacing: -0.02em;
-      }
-
-      .subtitle {
-        font-size: 4vh;
-        margin-bottom: 8vh;
-        color: #444;
-        font-weight: 500;
-        letter-spacing: -0.01em;
-      }
-
-      .counter {
-        font-size: 28vh;
-        font-weight: 950;
-        margin: 2vh 0;
-        color: #952821;
-        letter-spacing: -0.03em;
-        -webkit-text-stroke: 1px #952821;
-        animation: strongBlink 1.8s ease-in-out infinite;
-      }
-
-      @keyframes strongBlink {
-        0% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.15;
-        }
-        100% {
-          opacity: 1;
-        }
+      .fullscreen-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="title">WHO PQ 심사</div>
-      <div class="subtitle">2025. 01. 08 (수) ~ 01. 10 (금)</div>
-      <div class="counter" id="dday"></div>
+    <div class="image-container">
+      <img
+        src="https://gw.rapigen.com/editor/userfiles/rapigen.com/ysjang/815166548eb8ad8760cd3bf98ef01b6e/ysjang_aae5220648831eb14302b11f8342dd4.jpg"
+        alt="WHO PQ"
+        class="fullscreen-image"
+      />
     </div>
 
     <script>
@@ -103,24 +61,6 @@
           requestFullscreen();
         }
       });
-
-      function updateCounter() {
-        const now = new Date();
-        const target = new Date("2025-01-08T00:00:00+09:00"); // KST 기준
-
-        // 날짜 차이 계산 (한국 시간 기준)
-        const diffTime = target - now;
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-        const ddayElement = document.getElementById("dday");
-        ddayElement.innerHTML = `D-${diffDays}`;
-      }
-
-      // 초기 실행
-      updateCounter();
-
-      // 1분마다 업데이트
-      setInterval(updateCounter, 1000 * 60);
     </script>
   </body>
 </html>
